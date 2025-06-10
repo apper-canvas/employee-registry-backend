@@ -1,15 +1,26 @@
 import HomePage from '@/components/pages/HomePage';
 import NotFoundPage from '@/components/pages/NotFoundPage';
+import EmployeeList from '@/components/pages/EmployeeList';
 
-export const routes = {
-  home: {
-    id: 'home',
-    label: 'Employee Registry',
+export const routes = [
+  {
+    path: '/',
+    name: 'Dashboard',
+    component: HomePage
+  },
+  {
     path: '/home',
-    icon: 'Users',
-component: HomePage
+    name: 'Employee Form',
+    component: HomePage
+  },
+  {
+    path: '/employees',
+    name: 'Employee List',
+    component: EmployeeList
+  },
+  {
+    path: '*',
+    name: 'Not Found',
+    component: NotFoundPage
   }
-};
-
-export const routeArray = Object.values(routes);
-// NotFoundPage can be added here if it were a dynamic route, but it's explicitly defined in App.jsx
+];
