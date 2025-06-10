@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "fullName": "Sarah Johnson",
+    "employeeId": "EMP001",
+    "email": "sarah.johnson@company.com",
+    "phone": "+1 (555) 123-4567",
+    "department": "Engineering",
+    "designation": "Senior Developer",
+    "dateOfJoining": "2023-01-15",
+    "emergencyContact": {
+      "name": "Michael Johnson",
+      "relationship": "Spouse",
+      "phone": "+1 (555) 234-5678",
+      "email": "michael.johnson@email.com"
+    },
+    "resumeFile": {
+      "fileName": "sarah_johnson_resume.pdf",
+      "fileSize": 2048576,
+      "fileType": "application/pdf",
+      "uploadDate": "2023-01-10T09:30:00.000Z"
+    },
+    "notes": "Experienced in React, Node.js, and TypeScript. Previously worked at tech startups.",
+    "submittedAt": "2023-01-10T09:30:00.000Z"
+  },
+  {
+    "id": "2",
+    "fullName": "David Martinez",
+    "employeeId": "EMP002",
+    "email": "david.martinez@company.com",
+    "phone": "+1 (555) 345-6789",
+    "department": "Marketing",
+    "designation": "Marketing Manager",
+    "dateOfJoining": "2023-02-01",
+    "emergencyContact": {
+      "name": "Maria Martinez",
+      "relationship": "Spouse",
+      "phone": "+1 (555) 456-7890",
+      "email": "maria.martinez@email.com"
+    },
+    "resumeFile": {
+      "fileName": "david_martinez_resume.docx",
+      "fileSize": 1536000,
+      "fileType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "uploadDate": "2023-01-25T14:20:00.000Z"
+    },
+    "notes": "Specializes in digital marketing and brand strategy. MBA from Stanford.",
+    "submittedAt": "2023-01-25T14:20:00.000Z"
+  },
+  {
+    "id": "3",
+    "fullName": "Emily Chen",
+    "employeeId": "EMP003",
+    "email": "emily.chen@company.com",
+    "phone": "+1 (555) 567-8901",
+    "department": "Design",
+    "designation": "UX Designer",
+    "dateOfJoining": "2023-03-15",
+    "emergencyContact": {
+      "name": "James Chen",
+      "relationship": "Sibling",
+      "phone": "+1 (555) 678-9012",
+      "email": "james.chen@email.com"
+    },
+    "resumeFile": {
+      "fileName": "emily_chen_portfolio.pdf",
+      "fileSize": 3072000,
+      "fileType": "application/pdf",
+      "uploadDate": "2023-03-10T11:45:00.000Z"
+    },
+    "notes": "Expert in user research and interaction design. Previously at design consultancy.",
+    "submittedAt": "2023-03-10T11:45:00.000Z"
+  },
+  {
+    "id": "4",
+    "fullName": "Robert Taylor",
+    "employeeId": "EMP004",
+    "email": "robert.taylor@company.com",
+    "phone": "+1 (555) 789-0123",
+    "department": "Finance",
+    "designation": "Financial Analyst",
+    "dateOfJoining": "2023-04-01",
+    "emergencyContact": {
+      "name": "Linda Taylor",
+      "relationship": "Parent",
+      "phone": "+1 (555) 890-1234",
+      "email": "linda.taylor@email.com"
+    },
+    "resumeFile": {
+      "fileName": "robert_taylor_resume.pdf",
+      "fileSize": 1792000,
+      "fileType": "application/pdf",
+      "uploadDate": "2023-03-28T16:30:00.000Z"
+    },
+    "notes": "CPA certified with 5 years experience in corporate finance and budgeting.",
+    "submittedAt": "2023-03-28T16:30:00.000Z"
+  },
+  {
+    "id": "5",
+    "fullName": "Lisa Wong",
+    "employeeId": "EMP005",
+    "email": "lisa.wong@company.com",
+    "phone": "+1 (555) 901-2345",
+    "department": "Human Resources",
+    "designation": "HR Specialist",
+    "dateOfJoining": "2023-05-01",
+    "emergencyContact": {
+      "name": "Kevin Wong",
+      "relationship": "Spouse",
+      "phone": "+1 (555) 012-3456",
+      "email": "kevin.wong@email.com"
+    },
+    "resumeFile": {
+      "fileName": "lisa_wong_resume.docx",
+      "fileSize": 1280000,
+      "fileType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "uploadDate": "2023-04-26T10:15:00.000Z"
+    },
+    "notes": "Experienced in talent acquisition and employee relations. SHRM certified.",
+    "submittedAt": "2023-04-26T10:15:00.000Z"
+  }
+]
