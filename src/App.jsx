@@ -7,13 +7,11 @@ import { ToastContainer } from 'react-toastify';
 import Layout from '@/Layout';
 import HomePage from '@/components/pages/HomePage';
 import NotFoundPage from '@/components/pages/NotFoundPage';
+import Login from '@/pages/Login';
+import Signup from '@/pages/Signup';
 import Callback from '@/pages/Callback';
 import ErrorPage from '@/pages/ErrorPage';
-import Home from '@/pages/Home';
-import NotFound from '@/pages/NotFound';
-import EmployeeList from '@/components/pages/EmployeeList';
-import Login from '@/components/pages/Login';
-import Signup from '@/components/pages/Signup';
+import { routeArray } from './config/routes';
 
 // Create auth context
 export const AuthContext = createContext(null);
@@ -22,9 +20,6 @@ function AppContent() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isInitialized, setIsInitialized] = useState(false);
-  
-  // Define routes array for dynamic routing
-  const routeArray = [];
   
   // Get authentication status with proper error handling
   const userState = useSelector((state) => state.user);
@@ -73,11 +68,19 @@ function AppContent() {
           } else {
             navigate('/');
           }
-// Store user information in Redux
+          // Store user information in Redux
           dispatch(setUser(JSON.parse(JSON.stringify(user))));
         } else {
           // User is not authenticated
-          if (redirectPath) {
+          if (!isAuthPage) {
+            navigate(
+              currentPath.includes('/signup')
+                ? `/signup?redirect=${currentPath}`
+                : currentPath.includes('/login')
+                ? `/login?redirect=${currentPath}`
+                : '/login'
+            );
+          } else if (redirectPath) {
             if (
               !['error', 'signup', 'login', 'callback'].some((path) => currentPath.includes(path))
             ) {
