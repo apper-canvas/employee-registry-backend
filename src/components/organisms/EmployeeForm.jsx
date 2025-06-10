@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import FormSection from './FormSection';
-import FormField from './FormField';
-import FormSelect from './FormSelect';
-import FormDatePicker from './FormDatePicker';
-import FormTextarea from './FormTextarea';
-import FileUpload from './FileUpload';
-import FormProgress from './FormProgress';
-import ApperIcon from './ApperIcon';
-import { employeeService } from '../services';
+import FormSection from '@/components/molecules/FormSection';
+import FormField from '@/components/molecules/FormField';
+import FormSelect from '@/components/molecules/FormSelect';
+import FormDatePicker from '@/components/molecules/FormDatePicker';
+import FormTextarea from '@/components/molecules/FormTextarea';
+import FileUpload from '@/components/molecules/FileUpload';
+import FormProgress from '@/components/molecules/FormProgress';
+import Button from '@/components/atoms/Button';
+import ApperIcon from '@/components/ApperIcon';
+import { employeeService } from '@/services';
 
 const EmployeeForm = ({ onSubmitSuccess }) => {
   const [formData, setFormData] = useState({
@@ -270,7 +271,8 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
     ];
 
     let isValid = true;
-    const newErrors = {};
+    // const newErrors = {}; // This was creating a new empty errors object, which was buggy.
+    // Instead, rely on the state-managed `errors` and `validateField` for individual checks.
 
     requiredFields.forEach(field => {
       let value;
@@ -281,12 +283,15 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
         value = formData[field];
       }
 
+      // Explicitly call validateField for all required fields to ensure all errors are set
+      // The validateField function updates the `errors` state directly
       if (!validateField(field, value)) {
         isValid = false;
       }
     });
 
-    // Check for existing errors
+    // After running validateField for all required fields, check the final errors state
+    // This ensures all error messages are displayed before toast.error
     if (Object.keys(errors).length > 0) {
       isValid = false;
     }
@@ -297,7 +302,12 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm()) {
+    // Re-run full form validation just before submission
+    // Note: The `validateForm` function should be called first to populate all errors.
+    // Then, check the `errors` state, which `validateField` has already updated.
+    const formValidity = validateForm(); // This call will update `errors` state
+    
+    if (!formValidity) {
       toast.error('Please fix all errors before submitting');
       return;
     }
@@ -333,7 +343,7 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
         resumeFile: null,
         notes: ''
       });
-      setErrors({});
+      setErrors({}); // Also clear all errors on success
       
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -450,7 +460,7 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
               error={errors.dateOfJoining}
               required
             />
-            <div></div>
+            <div></div> {/* Empty div to maintain grid layout */}
           </div>
         </FormSection>
 
@@ -531,11 +541,9 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
 
         {/* Submit Button */}
         <div className="flex justify-center pt-6">
-          <motion.button
+          <Button
             type="submit"
             disabled={isSubmitting || progress < 100}
-            whileHover={!isSubmitting && progress >= 100 ? { scale: 1.02 } : {}}
-            whileTap={!isSubmitting && progress >= 100 ? { scale: 0.98 } : {}}
             className={`
               px-8 py-3 rounded-lg font-medium text-white transition-all duration-200
               flex items-center space-x-2 min-w-[200px] justify-center
@@ -544,6 +552,8 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
                 : 'bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl'
               }
             `}
+            whileHover={!isSubmitting && progress >= 100 ? { scale: 1.02 } : {}}
+            whileTap={!isSubmitting && progress >= 100 ? { scale: 0.98 } : {}}
           >
             {isSubmitting ? (
               <>
@@ -561,7 +571,7 @@ const EmployeeForm = ({ onSubmitSuccess }) => {
                 <span>Submit Employee Information</span>
               </>
             )}
-          </motion.button>
+          </Button>
         </div>
 
         {progress < 100 && (

@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Input from '@/components/atoms/Input';
+import Button from '@/components/atoms/Button';
 
 const FormSelect = ({ 
   label, 
@@ -31,13 +33,14 @@ const FormSelect = ({
 
   return (
     <div className="space-y-1 max-w-full">
-      <label className="block text-sm font-medium text-surface-700">
+      <label htmlFor={name} className="block text-sm font-medium text-surface-700">
         {label}
         {required && <span className="text-error ml-1">*</span>}
       </label>
       
       <div className="relative">
-        <motion.button
+        <Button
+          id={name}
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.99 }}
@@ -60,7 +63,7 @@ const FormSelect = ({
           >
             <ApperIcon name="ChevronDown" size={16} />
           </motion.div>
-        </motion.button>
+        </Button>
 
         <AnimatePresence>
           {isOpen && (
@@ -75,7 +78,7 @@ const FormSelect = ({
               <div className="p-2 border-b border-surface-200">
                 <div className="relative">
                   <ApperIcon name="Search" size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400" />
-                  <input
+                  <Input
                     type="text"
                     value={searchTerm}
                     onChange={handleSearchChange}
@@ -93,7 +96,7 @@ const FormSelect = ({
                   </div>
                 ) : (
                   filteredOptions.map((option, index) => (
-                    <motion.button
+                    <Button
                       key={option}
                       type="button"
                       onClick={() => handleSelect(option)}
@@ -110,7 +113,7 @@ const FormSelect = ({
                       `}
                     >
                       {option}
-                    </motion.button>
+                    </Button>
                   ))
                 )}
               </div>
@@ -119,18 +122,20 @@ const FormSelect = ({
         </AnimatePresence>
       </div>
       
-      {error && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2 }}
-          className="flex items-center space-x-1 text-sm text-error"
-        >
-          <ApperIcon name="AlertCircle" size={14} />
-          <span className="break-words">{error}</span>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center space-x-1 text-sm text-error"
+          >
+            <ApperIcon name="AlertCircle" size={14} />
+            <span className="break-words">{error}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Backdrop to close dropdown */}
       {isOpen && (

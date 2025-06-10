@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+// ApperIcon is not used in the original FormTextarea, so no import needed
 
 const FormTextarea = ({ 
   label, 
@@ -22,7 +23,7 @@ const FormTextarea = ({
   return (
     <div className="space-y-1 max-w-full">
       <div className="flex justify-between items-center">
-        <label className="block text-sm font-medium text-surface-700">
+        <label htmlFor={name} className="block text-sm font-medium text-surface-700">
           {label}
           {required && <span className="text-error ml-1">*</span>}
         </label>
@@ -32,6 +33,7 @@ const FormTextarea = ({
       </div>
       
       <motion.textarea
+        id={name}
         name={name}
         value={value}
         onChange={handleChange}
@@ -55,17 +57,20 @@ const FormTextarea = ({
         `}
       />
       
-      {error && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2 }}
-          className="flex items-center space-x-1 text-sm text-error"
-        >
-          <span className="break-words">{error}</span>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center space-x-1 text-sm text-error"
+          >
+            {/* ApperIcon is not in original FormTextarea's error message, so we keep it text only */}
+            <span className="break-words">{error}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

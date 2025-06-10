@@ -1,5 +1,7 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
 
 const SuccessModal = ({ employee, onClose }) => {
   const formatDate = (dateString) => {
@@ -118,14 +120,14 @@ const SuccessModal = ({ employee, onClose }) => {
 
           {/* Footer */}
           <div className="p-6 border-t border-surface-200 flex justify-end space-x-3">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+            <Button
               onClick={onClose}
               className="px-6 py-2.5 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Close
-            </motion.button>
+            </Button>
           </div>
         </div>
       </motion.div>

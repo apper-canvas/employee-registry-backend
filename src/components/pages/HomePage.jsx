@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import EmployeeForm from '../components/EmployeeForm';
-import SuccessModal from '../components/SuccessModal';
+import EmployeeForm from '@/components/organisms/EmployeeForm';
+import SuccessModal from '@/components/organisms/SuccessModal';
 
-const Home = () => {
+const HomePage = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [submittedEmployee, setSubmittedEmployee] = useState(null);
 
@@ -52,4 +52,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

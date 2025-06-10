@@ -1,8 +1,10 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import ApperIcon from '../components/ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
 
-const NotFound = () => {
+const NotFoundPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -26,18 +28,18 @@ const NotFound = () => {
           The page you're looking for doesn't exist or has been moved.
         </p>
         
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <Button
           onClick={() => navigate('/home')}
           className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <ApperIcon name="ArrowLeft" size={16} className="mr-2" />
           Back to Home
-        </motion.button>
+        </Button>
       </motion.div>
     </div>
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

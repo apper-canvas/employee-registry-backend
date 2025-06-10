@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
 
 const FileUpload = ({ onFileUpload, currentFile }) => {
   const [isDragging, setIsDragging] = useState(false);
@@ -209,7 +209,7 @@ const FileUpload = ({ onFileUpload, currentFile }) => {
                 </div>
               </div>
               
-              <motion.button
+              <Button
                 type="button"
                 onClick={handleRemoveFile}
                 whileHover={{ scale: 1.1 }}
@@ -217,7 +217,7 @@ const FileUpload = ({ onFileUpload, currentFile }) => {
                 className="w-8 h-8 bg-error/10 hover:bg-error/20 rounded-lg flex items-center justify-center text-error transition-colors"
               >
                 <ApperIcon name="Trash2" size={16} />
-              </motion.button>
+              </Button>
             </div>
           </motion.div>
         )}
