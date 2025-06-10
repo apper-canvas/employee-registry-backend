@@ -111,9 +111,9 @@ const employeeService = {
         const successfulRecords = response.results.filter(result => result.success);
         const failedRecords = response.results.filter(result => !result.success);
         
-        if (failedRecords.length > 0) {
+if (failedRecords.length > 0) {
           // CRITICAL: Log all failures at once
-          console.error(`Failed to create ${failedRecords.length} records:${failedRecords}`);
+          console.error(`Failed to create ${failedRecords.length} records:`, JSON.stringify(failedRecords));
           
           failedRecords.forEach(record => {
             record.errors?.forEach(error => {
@@ -186,9 +186,9 @@ const employeeService = {
         const successfulUpdates = response.results.filter(result => result.success);
         const failedUpdates = response.results.filter(result => !result.success);
         
-        if (failedUpdates.length > 0) {
+if (failedUpdates.length > 0) {
           // CRITICAL: Log all failures at once
-          console.error(`Failed to update ${failedUpdates.length} records:${failedUpdates}`);
+          console.error(`Failed to update ${failedUpdates.length} records:`, JSON.stringify(failedUpdates));
           
           failedUpdates.forEach(record => {
             record.errors?.forEach(error => {
@@ -235,9 +235,9 @@ const employeeService = {
         const successfulDeletions = response.results.filter(result => result.success);
         const failedDeletions = response.results.filter(result => !result.success);
         
-        if (failedDeletions.length > 0) {
+if (failedDeletions.length > 0) {
           // CRITICAL: Log all failures at once
-          console.error(`Failed to delete ${failedDeletions.length} records:${failedDeletions}`);
+          console.error(`Failed to delete ${failedDeletions.length} records:`, JSON.stringify(failedDeletions));
           
           failedDeletions.forEach(record => {
             if (record.message) toast.error(record.message);
